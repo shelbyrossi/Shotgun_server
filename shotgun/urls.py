@@ -15,7 +15,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from shotgunapi.views import register_user, login_user
+from rest_framework import routers
+from shotgunapi.views.tag import TagView
+from shotgunapi.views.scrapbook_tag import ScrapbookTagView
+from shotgunapi.views.image import ImageView
+from shotgunapi.views.scrapbook import ScrapbookView
+from shotgunapi.views.app_users import AppUserView
+
+
+router = routers.DefaultRouter(trailing_slash=False)
+
+router.register(r'image', ImageView, 'image')
+
+router.register(r'tags', TagView, 'tag')
+
+router.register(r'appusers', AppUserView, 'appuser')
+
+router.register(r'users', AppUserView, 'user')
+
+router.register(r'scrapbooktags', ScrapbookTagView, 'scrapbooktags')
+
+router.register(r'scrapbook', ScrapbookView, 'scrapbook')
 
 urlpatterns = [
+    path('register', register_user),
+    path('login', login_user),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
+    path('', include(router.urls))
+   
 ]

@@ -1,16 +1,21 @@
+
+
 [
     {
         "model": "shotgunapi.image",
         "pk": 1,
         "fields": {
-            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA-YmVa2RidqTH6NagCNnCrOpoG21o76ICcw&usqp=CAU"
+            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq8XjoXs8ZK-v7TVflokLkt9qCaDzyrEA4tw&usqp=CAU",
+            "scrapbook": 1
+            
         }
     },
     {
         "model": "shotgunapi.image",
         "pk": 2,
         "fields": {
-            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK5i4KaINk9UW7xP_kjtoYzCMZqvNgPW72Eg&usqp=CAU"
+           "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkvEGWPG4IBwJn9A13BREC2wYJRN8B3H3xrg&usqp=CAU",
+           "scrapbook": 1
         }
     }
     ]
