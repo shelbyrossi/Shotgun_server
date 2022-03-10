@@ -1,0 +1,20 @@
+[
+    {
+        "model": "shotgunapi.scrapbook",
+        "pk": 1,
+        "fields": {
+            "name": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq8XjoXs8ZK-v7TVflokLkt9qCaDzyrEA4tw&usqp=CAU",
+           "description":"Visit For Family",
+           "state": "Connecticut",
+            "date": "2022-12-02",
+           "destination": "Massachusetts",
+           "favorite_foodstop": "Rein's Deli",
+            "soundtrack" : "Leon Bridges",
+            "favorite_experience": "Leaving!",
+            "other_info": " I grew up in CT",
+            "user": 1 
+            
+        }
+   
+    }
+    ]

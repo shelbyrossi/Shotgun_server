@@ -1,0 +1,36 @@
+[
+    {
+        "model": "shotgunapi.tag",
+        "pk": 1,
+        "fields": {
+          "label": "Connecticut"
+
+
+        }
+    },
+    {
+        "model": "shotgunapi.tag",
+        "pk": 2,
+        "fields": {
+           "label": "Florida"
+
+        }
+    },
+     {
+        "model": "shotgunapi.tag",
+        "pk": 3,
+        "fields": {
+          "label": "Massachusetts "
+
+
+        }
+    },
+    {
+        "model": "shotgunapi.tag",
+        "pk": 4,
+        "fields": {
+           "label": "Alaska"
+
+        }
+    }
+]
