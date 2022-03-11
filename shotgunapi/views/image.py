@@ -51,6 +51,14 @@ class ImageView(ViewSet):
         serializer = CreateImageSerializer(image)
         return Response(serializer.data)
     
+    def destroy(self, request, pk):
+        """Delete image"""
+        scrapbook = Scrapbook.objects.get(pk=pk)
+        # getting individual tag by primary key and deleting
+        scrapbook.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     
     
 class ImageSerializer(serializers.ModelSerializer):
