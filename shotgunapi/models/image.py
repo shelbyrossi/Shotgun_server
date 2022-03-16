@@ -5,5 +5,5 @@ from django.db import models
 
 class Image(models.Model):
     image_url = models.URLField()
-    scrapbook_tag = models.ForeignKey("Scrapbook_Tag", on_delete=models.CASCADE, related_name='scrapbooktag')
+    scrapbook = models.ForeignKey("Scrapbook", on_delete=models.CASCADE, related_name='scrapbooks')
  
