@@ -6,7 +6,7 @@
         "pk": 1,
         "fields": {
             "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq8XjoXs8ZK-v7TVflokLkt9qCaDzyrEA4tw&usqp=CAU",
-            "scrapbook_tag": 1
+            "scrapbook": 1
             
         }
     },
@@ -15,7 +15,7 @@
         "pk": 2,
         "fields": {
            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkvEGWPG4IBwJn9A13BREC2wYJRN8B3H3xrg&usqp=CAU",
-           "scrapbook_tag": 1
+           "scrapbook": 1
         }
     }
     ]

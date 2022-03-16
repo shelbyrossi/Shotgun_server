@@ -7,7 +7,7 @@ from shotgunapi.models.scrapbook import Scrapbook
 from shotgunapi.models.app_users import App_Users
 from shotgunapi.models.image import Image
 from django.forms import ValidationError
-
+from django.db.models import Q
 
 class ScrapbookView(ViewSet):
     """SHOTGUN SCRAPBOOK VIEW """
@@ -31,7 +31,7 @@ class ScrapbookView(ViewSet):
         Returns:
             Response -- JSON serialized list of game types
         """
-        scrapbook = Scrapbook.objects.all()
+        scrapbook = Scrapbook.objects.all()     
         # getting all() the tags
         serializer = ScrapbookSerializer(scrapbook, many=True)
         # passing through serializer and setting multiple (many=true)
@@ -140,5 +140,5 @@ class CreateScrapbookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Scrapbook
         fields = ('id', 'name', 'description', 'state',  'date', 'destination',
-                  'favorite_foodstop', 'soundtrack', 'favorite_experience', 'other_info', 'user','tags')
-        depth = 3
+                  'favorite_foodstop', 'soundtrack', 'favorite_experience', 'other_info', 'user', 'tags')
+        depth = 2

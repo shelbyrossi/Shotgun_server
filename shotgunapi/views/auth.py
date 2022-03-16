@@ -50,13 +50,16 @@ def register_user(request):
         password=request.data['password'],
         first_name=request.data['first_name'],
         last_name=request.data['last_name'],
-        email=request.data['email']
+        email=request.data['email'],
+        is_staff=request.data['admin']
+        
        
     )
 
     app_user = App_Users.objects.create(
         bio=request.data['bio'],
         user=new_user,
+        staff=new_user.is_staff
         
     )
 
@@ -64,4 +67,16 @@ def register_user(request):
     token = Token.objects.create(user=app_user.user)
     # Return the token to the client
     data = { 'token': token.key, 'userId': app_user.user.id}
+    return Response(data)
+
+
+@api_view(['GET'])
+def check_admin(request):
+    '''Checks if a user is an admin, based on their token
+    
+    Method arguments:
+      request -- The full HTTP request object
+    '''
+    thisUser = App_Users.objects.get(user=request.auth.user)
+    data = { 'auth': thisUser.user.is_staff }
     return Response(data)

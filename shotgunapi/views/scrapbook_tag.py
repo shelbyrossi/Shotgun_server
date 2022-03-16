@@ -33,6 +33,14 @@ class ScrapbookTagView(ViewSet):
         return Response(serializer.data)
     
     
+    def destroy(self, request, pk):
+        """Delete game"""
+        scrapbook_tag = Scrapbook_Tag.objects.get(pk=pk)
+        # getting individual tag by primary key and deleting
+        scrapbook_tag.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
     
 class Scrapbook_TagSerializer(serializers.ModelSerializer):
     """JSON serializer for game types
@@ -40,4 +48,4 @@ class Scrapbook_TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Scrapbook_Tag
         fields = ('id', 'tag', 'scrapbook')
-        depth = 1
+        depth = 3
