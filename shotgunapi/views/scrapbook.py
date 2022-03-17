@@ -31,7 +31,13 @@ class ScrapbookView(ViewSet):
         Returns:
             Response -- JSON serialized list of game types
         """
-        scrapbook = Scrapbook.objects.all()     
+        
+        
+        scrapbook = Scrapbook.objects.all()         
+        userId = self.request.query_params.get('user_id', None)
+        if userId is not None:
+            scrapbook = scrapbook.filter(user_id = userId)
+           
         # getting all() the tags
         serializer = ScrapbookSerializer(scrapbook, many=True)
         # passing through serializer and setting multiple (many=true)
