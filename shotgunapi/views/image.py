@@ -58,6 +58,18 @@ class ImageView(ViewSet):
         scrapbook.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def update(self, request, pk=None):
+        """Update Image"""
+        try:
+            image = Image.objects.get(pk=pk)
+           
+            serializer = ImageSerializer(image, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+        except Image.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     
     
