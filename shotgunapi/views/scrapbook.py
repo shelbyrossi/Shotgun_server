@@ -5,9 +5,8 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from shotgunapi.models.scrapbook import Scrapbook
 from shotgunapi.models.app_users import App_Users
-from shotgunapi.models.image import Image
 from django.forms import ValidationError
-from django.db.models import Q
+
 
 class ScrapbookView(ViewSet):
     """SHOTGUN SCRAPBOOK VIEW """
@@ -35,8 +34,11 @@ class ScrapbookView(ViewSet):
         
         scrapbook = Scrapbook.objects.all()         
         userId = self.request.query_params.get('user_id', None)
+        
         if userId is not None:
             scrapbook = scrapbook.filter(user_id = userId)
+       
+            
            
         # getting all() the tags
         serializer = ScrapbookSerializer(scrapbook, many=True)
