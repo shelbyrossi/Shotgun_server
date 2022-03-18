@@ -4,6 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from shotgunapi.models import App_Users
+from rest_framework.decorators import action
 
 
 
@@ -33,11 +34,19 @@ class AppUserView(ViewSet):
         return Response(serializer.data)
     
     
+    @action(methods=['get'], detail=False)
+    def currentuser(self, request):
+        user = App_Users.objects.get(user=request.auth.user)
+        serializer = App_UsersSerializer(user)
+        return Response(serializer.data)
+       
     
 class App_UsersSerializer(serializers.ModelSerializer):
     """JSON serializer for app users
     """
     class Meta:
         model = App_Users
-        fields = ('user','bio')
+        fields = "__all__"
         depth = 1
+        
+        
