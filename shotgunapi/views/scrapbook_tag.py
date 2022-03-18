@@ -29,6 +29,11 @@ class ScrapbookTagView(ViewSet):
             Response -- JSON serialized list of all scrapbook tags
         """
         scrapbook_tag = Scrapbook_Tag.objects.all()
+        tagId =  self.request.query_params.get('tag_id', None)
+        
+        if tagId is not None:
+            scrapbook_tag = scrapbook_tag.filter(tag_id = tagId)
+            
         serializer = Scrapbook_TagSerializer(scrapbook_tag, many=True)
         return Response(serializer.data)
     
