@@ -34,9 +34,14 @@ class ScrapbookView(ViewSet):
         
         scrapbook = Scrapbook.objects.all()         
         userId = self.request.query_params.get('user_id', None)
+        tagId =  self.request.query_params.get('tag_id', None)
         
         if userId is not None:
             scrapbook = scrapbook.filter(user_id = userId)
+        
+        if tagId is not None:
+            # stepping into tags 
+            scrapbook = scrapbook.filter(tags__id = tagId)
        
             
            
