@@ -86,19 +86,6 @@ class ScrapbookView(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request, pk):
-        """Update Scrapbook"""
-        try:
-            scrapbook = Scrapbook.objects.get(pk=pk)
-
-            serializer = CreateScrapbookSerializer(
-                scrapbook, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except Scrapbook.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-        
         
 
     def update(self, request, pk=None):
@@ -116,6 +103,7 @@ class ScrapbookView(ViewSet):
         scrapbook = Scrapbook.objects.get(pk=pk)
         scrapbook.name = request.data["name"]
         scrapbook.description = request.data["description"]
+        scrapbook.destination = request.data["destination"]
         scrapbook.state = request.data["state"]
         scrapbook.date = request.data["date"]
         scrapbook.favorite_foodstop = request.data["favorite_foodstop"]
