@@ -9,39 +9,38 @@ from django.forms import ValidationError
 
 
 class ScrapbookView(ViewSet):
-    """SHOTGUN SCRAPBOOK VIEW """
 
-    def retrieve(self, request, pk):
-        """Handle GET requests for single scrapbook 
-        Returns:
-            Response -- JSON serialized scrapbook type
-        """
+
+    def retrieve(self, request, pk):   
 
         scrapbook = Scrapbook.objects.get(pk=pk)
-        # getting individual tag by pk
-        # serializer converts object to send to client
-        # setting the value of serializer to the Scrapbook Serializer and passing your tag object through
+        
+        # getting individual scrapbook by pk
+        # serializer converts object to send to client, JSON serialized
+        # setting the value of serializer to the Scrapbook Serializer and passing your scrapbook object through
         serializer = ScrapbookSerializer(scrapbook)
         # returning a response of the serialized data
         return Response(serializer.data)
 
     def list(self, request):
-        """Handle GET requests to get all game types
-        Returns:
-            Response -- JSON serialized list of game types
-        """
-        
+       
+        # handling get request for all scrapbook types and returning a 
+        # response of JSON serialized list of scrapbook types 
         
         scrapbook = Scrapbook.objects.all()         
         userId = self.request.query_params.get('user_id', None)
-        tagId =  self.request.query_params.get('tag_id', None)
+        tagId =  self.request.query_params.get('tag_id', 0)
         
         if userId is not None:
             scrapbook = scrapbook.filter(user_id = userId)
+            # if there is a userId, filter scrapbooks by userId 
         
-        if tagId is not None:
+        if int(tagId)!= 0: 
+            # if there is a tagId, filter scrapbooks by tags
             # stepping into tags 
             scrapbook = scrapbook.filter(tags__id = tagId)
+            
+     
        
             
            
