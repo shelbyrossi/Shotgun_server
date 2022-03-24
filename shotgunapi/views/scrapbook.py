@@ -51,7 +51,7 @@ class ScrapbookView(ViewSet):
         # returning a response of teh serialized data
 
     def destroy(self, request, pk):
-        """Delete game"""
+    
         scrapbook = Scrapbook.objects.get(pk=pk)
         # getting individual tag by primary key and deleting
         scrapbook.delete()
@@ -59,11 +59,7 @@ class ScrapbookView(ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def create(self, request):
-        """Handle POST operations
-
-        Returns
-         Response -- JSON serialized scrapbook instances
-         """
+       
         #   creating a method for POSTING scrapbook
 
         user = App_Users.objects.get(user=request.auth.user)
@@ -124,8 +120,7 @@ class ScrapbookView(ViewSet):
 
 
 class ScrapbookSerializer(serializers.ModelSerializer):
-    """JSON serializer for tag types
-    """
+    
     # telling the serializer to use Tag model and include the fields
     class Meta:
         model = Scrapbook
@@ -135,9 +130,11 @@ class ScrapbookSerializer(serializers.ModelSerializer):
 
 
 class CreateScrapbookSerializer(serializers.ModelSerializer):
-    """JSON serializer for tag types
-    """
+    
+    # this class determines how the Python data should be serialized to be sent back to client in JSON.
     class Meta:
+        
+    # Meta class holds configuration for serializer - saying use the Pet model and include the fields to serialize below.
         model = Scrapbook
         fields = ('id', 'name', 'description', 'state',  'date', 'destination',
                   'favorite_foodstop', 'soundtrack', 'favorite_experience', 'other_info', 'user', 'tags')

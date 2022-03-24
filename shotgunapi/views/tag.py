@@ -8,13 +8,10 @@ from shotgunapi.models.tag import Tag
 
 
 class TagView(ViewSet):
-    """SHOT GUN TAGS VIEW """
+  
 
     def retrieve(self, request, pk):
-        """Handle GET requests for single tag type
-        Returns:
-            Response -- JSON serialized tag type
-        """
+    # retrieve method handles GET request that has ID in url, a specific tag
 
         tag = Tag.objects.get(pk=pk)
         # getting individual tag by pk
@@ -26,16 +23,13 @@ class TagView(ViewSet):
 
 
     def list(self, request):
-        """Handle GET requests to get all game types
-        Returns:
-            Response -- JSON serialized list of game types
-        """
+    # list method handles GET request to get all the tags   
         tag = Tag.objects.all()
         # getting all() the tags
         serializer = TagSerializer(tag, many=True)
         # passing through serializer and setting multiple (many=true)
         return Response(serializer.data)
-        # returning a response of teh serialized data 
+        # returning a response of the serialized data 
 
     def destroy(self, request, pk):
         """Delete game"""
@@ -46,11 +40,7 @@ class TagView(ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
     def create(self, request):
-        """Handle POST operations
-
-        Returns
-         Response -- JSON serialized game instance
-         """
+        
         #   creating a method for POSTING tags 
         tag = Tag.objects.create(
             label=request.data["label"],
@@ -60,7 +50,7 @@ class TagView(ViewSet):
         return Response(serializer.data)
     
     def update(self, request, pk):
-        """Update Tags"""
+      
         try:
             tag = Tag.objects.get(pk=pk)
            
